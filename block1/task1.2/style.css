@@ -21,10 +21,6 @@
     padding: 10px;
 }
 
-.overview {
-    
-}
-
 .overview-content {
     font-size: 25px;
 }
@@ -32,10 +28,6 @@
 .overview-title {
     font-size: 45px;
     font-weight: bolder;
-}
-
-.birthweek{
-
 }
 
 .birthweek-title {
@@ -47,11 +39,6 @@
     font-size: 25px;
 }
 
-
-.releases {
-
-}
-
 .releases-title {
     font-size: 35px;
     margin-bottom: 15px;
@@ -60,15 +47,13 @@
 .releases-content {
     display: grid;
     grid-template-columns: auto auto auto;
-
+    max-width: 65%;
 }
 
 .releases-release {
-    background-color: #f1f1f1;
-  border: 1px solid black;
-  padding: 10px;
-  font-size: 30px;
-  text-align: center;
+  padding: 5px;
+  height: 100%;
+  width: 100%;
 }
 
 a {color: wheat}
