@@ -1,0 +1,11 @@
+document.getElementsByClassName('games')[0]
+=> <ul class="games">
+
+document.getElementsByClassName('games')[1]
+=> <ul class="games">
+
+let freeplayfinal = document.getElementsByClassName('games')[2].children[3]
+
+let listelements = document.getElementsByClassName('games')[1].getElementsByTagName('li')
+
+let h1 = document.getElementsByTagName('h1')
