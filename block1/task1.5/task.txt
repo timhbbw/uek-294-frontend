@@ -1,0 +1,9 @@
+galaxus.ch => 251 Aufrufe
+
+Grösse => 612kb
+
+CSS => 72 requests, 65kb
+
+XHR => 26 requests
+
+JS => 111 / 251, 2 MB
