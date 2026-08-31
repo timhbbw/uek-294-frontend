@@ -1,0 +1,19 @@
+.body {
+    background-color: #1cd761;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top {
+    padding-left: 25px;
+    font-size: 35px;
+    /* text-align no longer does anything useful here, can drop it */
+}
+
+.nav {
+    /* text-align: right no longer needed either */
+}
