@@ -1,19 +1,37 @@
 .body {
     background-color: #1cd761;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .topbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 45px;
 }
 
 .top {
-    padding-left: 25px;
     font-size: 35px;
-    /* text-align no longer does anything useful here, can drop it */
 }
 
-.nav {
-    /* text-align: right no longer needed either */
+.nav-element {
+    border: wheat 3px solid;
+    border-radius: 15px;
+    padding: 10px;
 }
+
+.overview {
+    
+}
+
+.overview-content {
+    font-size: 25px;
+}
+
+.overview-title {
+    font-size: 45px;
+    font-weight: bolder;
+}
+
+a {color: wheat}
