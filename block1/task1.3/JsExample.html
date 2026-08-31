@@ -4,24 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script type="text/javascript" src="./exampleJs.js" defer></script>
 </head>
 <body>
     <button onclick="alert('du hast mich geclickt!')">Click me!</button>
+    <button id="MyButton">Click me!</button>
     <button id="MyButton2">Click me 2!</button>
     <button id="MyButton3">Click me 3!</button>
     <button id="MyButton4">Click me 4!</button>
     <button id="MyButton5">Click me 5!</button>
-
-    <script type="text/javascript">
-        let myButton = document.getElementById('MyButton')
-        let myButton2 = document.getElementById('MyButton2')
-
-        myButton.onclick = function () {alert('Hallo button');}
-        myButton2.onclick = doSomethingGreat;
-
-        function doSomethingGreat() {
-            alert('Do something Great was called');
-        }
-    </script>
 </body>
 </html>
