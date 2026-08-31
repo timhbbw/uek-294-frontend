@@ -9,3 +9,9 @@ let freeplayfinal = document.getElementsByClassName('games')[2].children[3]
 let listelements = document.getElementsByClassName('games')[1].getElementsByTagName('li')
 
 let h1 = document.getElementsByTagName('h1')
+
+let gameoftheday = document.getElementById('game-of-the-day')
+
+let onsalegames = document.getElementsByClassName('sale')
+
+TO BE REPEATED FOR querySelector
