@@ -52,4 +52,23 @@
 
 }
 
+.releases-title {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.releases-content {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: dodgerblue;
+}
+
+.releases-release {
+    background-color: #f1f1f1;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+
 a {color: wheat}
