@@ -1,0 +1,41 @@
+body {
+    font-family: sans-serif;
+    margin: 16px;
+}
+
+#choose {
+    margin-bottom: 16px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+#destinations {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    max-height: 80vh;
+    gap: 4px 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#destinations li {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+}
+
+.country {
+    font-weight: bold;
+}
+
+.capital {
+    font-size: 0.85em;
+    color: #555;
+}
+
+.selected {
+    background-color: gold;
+}
