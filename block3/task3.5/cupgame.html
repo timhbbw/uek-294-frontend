@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Becherspiel</title>
-    <script src="./cupgame.js" defer></script>
+    <title>Becher Spiel</title>
     <link rel="stylesheet" href="style.css">
+    <script src="cupgame.js" defer></script>
 </head>
+
 <body>
-    <h1>Becherspiel</h1>
 
-    <div class="cups">
-        <div class="cup" id="cup1"></div>
-        <div class="cup" id="cup2"></div>
-        <div class="cup" id="cup3"></div>
+    <h1>Wähle einen Becher</h1>
+
+    <div class="grid">
+
+        <img src="cup.png" class="cup" onclick="becherKlick(this, 0)">
+
+        <img src="cup.png" class="cup" onclick="becherKlick(this, 1)">
+
+        <img src="cup.png" class="cup" onclick="becherKlick(this, 2)">
+
     </div>
 
-    <div class="controls">
-        <button id="shuffle">Mischen</button>
-        <p>Misslungene Versuche: <span id="fails">0</span></p>
-    </div>
+    <button onclick="shuffleCups()">Shuffle</button>
+
+    <p>
+        <span id="incorrect">0</span>
+    </p>
+
 </body>
+
 </html>
