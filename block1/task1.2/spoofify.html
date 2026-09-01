@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spoofify</title>
     <link rel="stylesheet" href="style.css">
+    <script src="./spoofify.js" defer></script>
 </head>
 
 <body class="body">
@@ -25,26 +26,39 @@
             <div class="birthweek">
                 <div class="birthweek-title"><b>Top of your Birthweek</b></div>
                 <div class="birthweek-content">
-                <ol>
-                    <li><b>Jump</b> by <i>Kriss Kross</i></li>
-                    <li><b>My lovin'</b> by <i>En Vogue</i></li>
-                    <li><b>Bohemian Rhapsody</b> by <i>Queen</i></li>
-                    <li><b>Save the best for last</b> by <i>Vanessa Williams</i></li>
-                    <li><b>Live and Learn</b> by <i>Joe Public</i></li>
-                </ol>
+                    <ol>
+                        <li><b>Jump</b> by <i>Kriss Kross</i></li>
+                        <li><b>My lovin'</b> by <i>En Vogue</i></li>
+                        <li><b>Bohemian Rhapsody</b> by <i>Queen</i></li>
+                        <li><b>Save the best for last</b> by <i>Vanessa Williams</i></li>
+                        <li><b>Live and Learn</b> by <i>Joe Public</i></li>
+                    </ol>
                 </div>
             </div>
             <div class="releases">
                 <div class="releases-title"><b>Latest releases randomized</b></div>
-                    <div class="releases-content">
-                        <div class="releases-release"> <img src="https://loremflickr.com/480/480/cd,album,cover?random=1"></div>
-                        <div class="releases-release"> <img src="https://loremflickr.com/480/480/cd,album,cover?random=1"></div>
-                        <div class="releases-release"> <img src="https://loremflickr.com/480/480/cd,album,cover?random=1"></div>
-                        <div class="releases-release"> <img src="https://loremflickr.com/480/480/cd,album,cover?random=1"></div>
-                        <div class="releases-release"> <img src="https://loremflickr.com/480/480/cd,album,cover?random=1"></div>
-                        <div class="releases-release"> <img src="https://loremflickr.com/480/480/cd,album,cover?random=1"></div>
+                <button id="addmore">Add three more</button>
+                <button id="remfirst">Remove first threee</button>
+                <div class="releases-content">
+                    <div class="releases-release"> <img src="https://loremflickr.com/480/480/cd,album,cover?random=1">
                     </div>
-                
+                    <div class="releases-release"> <img
+                            src="https://loremflickr.com/cache/resized/65535_52002895623_24b1b9f36d_480_480_nofilter.jpg">
+                    </div>
+                    <div class="releases-release"> <img
+                            src="https://loremflickr.com/cache/resized/65535_9902076543_f9814b710a_480_480_nofilter.jpg">
+                    </div>
+                    <div class="releases-release"> <img
+                            src="https://loremflickr.com/cache/resized/65535_52002724796_b959ef30ab_480_480_nofilter.jpg">
+                    </div>
+                    <div class="releases-release"> <img
+                            src="https://loremflickr.com/cache/resized/4820_46768887601_cbccf4984a_c_480_480_nofilter.jpg">
+                    </div>
+                    <div class="releases-release"> <img
+                            src="https://loremflickr.com/cache/resized/65535_52955374346_041ebca58a_k_480_480_nofilter.jpg">
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

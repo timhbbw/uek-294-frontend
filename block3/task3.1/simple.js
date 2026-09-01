@@ -5,7 +5,7 @@ let counter = 0;
 let counterdisplay = document.querySelector('#counter');
 
 let counter1 = 0;
-let counterdisplay1 = document.querySelector('#counter1');
+let counterdisplay1 = document.querySelectors('#counter1');
 let button2 = document.querySelector('#button1');
 button2.addEventListener('click', countup1);
 
@@ -18,7 +18,6 @@ function countup1() {
     counter1++;
     counterdisplay1.textContent = counter1;
 }
-
 
 let football = document.querySelector('.football');
 let footballField = document.querySelector('.football-field');
