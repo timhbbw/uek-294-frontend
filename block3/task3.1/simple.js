@@ -18,3 +18,13 @@ function countup1() {
     counter1++;
     counterdisplay1.textContent = counter1;
 }
+
+
+let football = document.querySelector('.football');
+let footballField = document.querySelector('.football-field');
+footballField.addEventListener('click', moveBall);
+
+function moveBall(event) {
+    football.style.left = event.offsetX + 'px';
+    football.style.top = event.offsetY + 'px';
+}
