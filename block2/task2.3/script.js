@@ -14,9 +14,7 @@ ul.appendChild(newlielement);
 
 ul.getElementsByTagName('li')[1].remove();
 
-
 let img = document.createElement('img');
 img.src = 'https://picsum.photos/600/300';
-img.alt = 'Platzhalter Bild';
 img.classList.add('bild');
 h1text.insertAdjacentElement('afterend', img);
