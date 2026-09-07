@@ -1,0 +1,8 @@
+.large {
+    font-size: 2em;
+}
+.bild {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
