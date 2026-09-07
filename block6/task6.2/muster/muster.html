@@ -13,7 +13,12 @@
         }
 
         label {
-            font-size: 0.7rem;
+            font-size: 0.95rem;
+            margin-top: 1em;
+        }
+
+        input {
+            font-size: 1.2rem;
         }
 
         input:invalid {
@@ -31,6 +36,17 @@
             registerForm.addEventListener('submit', (event) => {
                 event.preventDefault();
                 console.log('form submitted');
+            });
+
+            const passwordConfirmField = document.forms.register.passwordConfirm;
+            passwordConfirmField.addEventListener('input', () => {
+                const passwordvalue = registerForm.elements.passwordvalue;
+                const passwordconfirmvalue = passwordConfirmField.value;
+                if(passwordvalue !== passwordConfirmField){
+                    passwordConfirmField.setCustomValidity('Passwords do not match!');
+                } else {
+                    passwordConfirmField.setCustomValidity('');
+                }
             });
         });
     </script>
