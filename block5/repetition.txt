@@ -1,0 +1,4 @@
+sommerTitel.style.visibility = 'hidden'; => Verstecken, bleibt bestehen und nichts verruscht.
+
+
+wie löscht man alle elemente mit der klasse rot? => document.querySelectorAll(".rot").forEach(n => n.remove())
