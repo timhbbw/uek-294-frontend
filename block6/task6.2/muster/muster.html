@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input,
+        label {
+            display: block;
+        }
+
+        label {
+            font-size: 0.7rem;
+        }
+
+        input:invalid {
+            border: 2px solid red;
+        }
+
+        input:valid {
+            border: 2px solid green;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const registerForm = document.forms.register;
+
+            registerForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                console.log('form submitted');
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <form name="register" method="post">
+        <label for="mail">Email Adresse</label>
+        <input type="email" name="mail" required />
+
+        <label for="password">Passwort</label>
+        <input type="password" name="password" required minlength="8"/>
+
+        <label for="password-confirm">Passwortbestätigung</label>
+        <input type="password" name="password-confirm" required minlength="8" />
+
+
+        <label for="agb">AGB akzeptieren</label>
+        <input type="checkbox" name="agb" />
+
+        <button type="submit">Registrieren</button>
+    </form>
+</body>
+
+</html>

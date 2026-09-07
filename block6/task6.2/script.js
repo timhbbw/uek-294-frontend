@@ -1,7 +1,5 @@
 
 const form = document.forms.password;
-
-    const emailelement = form.elements.email;
     
     const passwordelement = form.elements.password;
     
@@ -10,8 +8,6 @@ const form = document.forms.password;
     const termselement = form.elements.terms;
     
 form.addEventListener('submit', function (event) {
-
-    const email = emailelement.value;
     const password = passwordelement.value;
     const confirmpassword = confirmpasswordelement.value;
     const terms = termselement.checked;
