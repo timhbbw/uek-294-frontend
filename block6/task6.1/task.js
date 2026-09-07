@@ -1,16 +1,20 @@
-let username = prompt('Whats Your Name?');
+
+const form = document.forms.signup;
+
+const prenameelement = form.elements.prename;
+const prename = prenameelement.value;
 
 let datetime = new Date();
 const currenthour = datetime.getHours();
 
 if (currenthour >= 5 && currenthour < 11) {
-    alert('Guten Morgen ' + username);
+    alert('Guten Morgen ' + prename);
 } else if (currenthour >= 11 && currenthour < 18) {
-    alert('Guten Tag ' + username);
+    alert('Guten Tag ' + prename);
 } else if (currenthour >= 18 && currenthour < 22) {
-    alert('Guten Abend ' + username);
+    alert('Guten Abend ' + prename);
 } else {
-    alert('Gute Nacht ' + username);
+    alert('Gute Nacht ' + prename);
 }
 
 console.log(username);
