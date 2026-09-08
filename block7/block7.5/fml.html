@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('Authentifizierung');
+            form.addEventListener('submit', createComment);
+            async function createComment(event) {
+                event.preventDefault();
+                const name = form.name.value;
+                const message = form.message.value;
+ 
+                const tokenResponse = await fetch('http://10.71.4.41/challenges/1', {
+                    method: 'POST'
+                });
+                console.log(tokenResponse)
+ 
+                const tokenData = await tokenResponse.headers;
+                const token = tokenData.get('Authorization');
+ 
+                const comment = {
+                    message: message,
+                    username: name
+                };
+ 
+                const commentResponse = await fetch('http://10.71.4.41/comments', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `${token}`
+                    },
+                    body: JSON.stringify(comment)
+                });
+ 
+                const result = await commentResponse.json();
+                console.log(result);
+                alert('Kommentar wurde erstellt!');
+                form.reset();
+            }
+        });
+    </script>
+</head>
+ 
+<body>
+ 
+    <form id="Authentifizierung">
+ 
+        <label for="name">Benutzername</label>
+        <input
+            type="text"
+            name="name"
+            minlength="3"
+            maxlength="16"
+            required>
+ 
+        <label for="message">Nachricht</label>
+        <input
+            type="text"
+            name="message"
+            minlength="3"
+            maxlength="300"
+            required>
+ 
+        <button type="submit">Absenden</button>
+ 
+    </form>
+</body>
+</html>

@@ -7,80 +7,93 @@
     <title>CommentsPage</title>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', async () => {
-            const url = 'http://10.71.4.41';
             const sendmessageform = document.forms.comment;
+            const url = 'http://10.71.4.41'
 
-            const requestcookiebutton = document.getElementById('requestauthcookie');
+            sendmessageform.addEventListener('submit', async (event) => {
+                sendMessage(sendmessageform);
+            });
 
-            let islocked = true;
-
-            requestcookiebutton.addEventListener('click', requestauth);
-            async function requestauth() {
-                const response = await fetch(url + '/challenges/1', {
+            async function sendMessage(messageform) {
+                const tokenresponse = await fetch(url + '/challenges/1', {
                     method: 'POST'
                 });
 
-                if(!response.ok){
-                    alert('Something went wrong while getting your auth Cookie!')
-                };
+                let token = tokenresponse.headers.get('Authorization');
 
-                console.log(response.body);
-
-                islocked = response.body.JSON.locked;
-                console.log(islocked);
-                return response.body;
-            };
-
-            sendmessageform.addEventListener('submit', async (event) => {
-                if(!islocked){
-                    sendMessage(sendmessageform)
-                } else {
-                    //alert('Something went wrong while preparing your Message');
-                    console.log(sendmessageform.message.value);
-                    console.log(sendmessageform.username.value);
-                    console.log(sendmessageform.body.JSON);
-                    event.preventDefault();
-                }
-            });
-
-            async function sendMessage(messageform){
                 const response = await fetch(url + '/comments', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `${token}`
                     },
-                    credentials: 'include',
                     body: JSON.stringify({
                         message: messageform.message.value,
                         username: messageform.username.value
                     })
                 });
 
-                console.log(response);
-                
-                if(!response.ok){
+
+                if (!response.ok) {
                     alert('Something went wrong while sending your message');
-                    console.log(response.body);
-                };
+                    console.log(response.json);
+                } else {
+                    alert('Your message: ' + messageform.message.value + ' was sent!');
+                }
             }
+
+
+            async function displayComments() {
+                const response = await fetch(url + '/comments', {
+                    method: 'GET'
+                });
+                let comments = await response.json();
+
+                const posts = document.querySelector('.post');
+                
+                comments.forEach(comment => {
+                    const commentdiv = document.createElement('div');
+
+                    const commentusername = document.createElement('p');
+                    commentusername.innerText = comment.username;
+                    commentdiv.append(commentusername);
+
+                    const commentmessage = document.createElement('p');
+                    commentmessage.innerText = comment.message;
+                    commentdiv.append(commentmessage);
+
+                    
+                    posts.appendChild(commentdiv);
+
+                });
+            }
+
+            displayComments();
         });
     </script>
     <style>
-
+        .forms {
+            display: flex;
+            flex-direction: column;
+            justify-self: center;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-    <button id="requestauthcookie">Request AuthCookie</button>
-    <form name="comment">
-        <label for="username">Username</label>
-        <input type="text" name="username" placeholder="Tim Hug">
+    <form name="comment" class="forms">
+        <label for="username">Username:</label>
+        <input type="text" name="username" minlength="3" maxlength="16" required>
 
-        <label for="message">Message</label>
-        <input type="text" name="message" placeholder="Hello World!">
+        <label for="message">Message:</label>
+        <input type="text" name="message" minlength="3" maxlength="300" required>
 
         <button type="submit">Send!</button>
     </form>
+    <div class="post">
+
+    </div>
 </body>
 
 </html>
