@@ -14,12 +14,12 @@
             refreshbutton.addEventListener('click', loadBlogPosts);
             const url = 'https://jsonplaceholder.typicode.com/posts';
 
+            const postdivs = document.getElementById('posts');
+
             async function loadBlogPosts() {
                 const result = await fetch(url);
 
                 const blogposts = await result.json();
-
-                const postdivs = document.getElementById('posts');
 
                 postdivs.replaceChildren();
 
@@ -50,9 +50,20 @@
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8'
                     },
-                    body: JSON.stringify(addpost.title,addpost.content)
+                    body: JSON.stringify({
+                        title: addpost.title.value,
+                        body: addpost.content.value
+                    })
                 });
-                alert(response.body);
+
+                if (!response.ok) {
+                    alert('Something went wrong while creating this post');
+                    return;
+                }
+
+                const blogpost = await response.json();
+                postdivs.prepend(CreateBlogPost(blogpost));
+                addpost.reset();
                 console.log('form submitted');
             });
 

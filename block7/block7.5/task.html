@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommentsPage</title>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', async () => {
+            const url = 'http://10.71.4.41';
+            const sendmessageform = document.forms.comment;
+
+            const requestcookiebutton = document.getElementById('requestauthcookie');
+
+            let islocked = true;
+
+            requestcookiebutton.addEventListener('click', requestauth);
+            async function requestauth() {
+                const response = await fetch(url + '/challenges/1', {
+                    method: 'POST'
+                });
+
+                if(!response.ok){
+                    alert('Something went wrong while getting your auth Cookie!')
+                };
+
+                console.log(response.body);
+
+                islocked = response.body.JSON.locked;
+                console.log(islocked);
+                return response.body;
+            };
+
+            sendmessageform.addEventListener('submit', async (event) => {
+                if(!islocked){
+                    sendMessage(sendmessageform)
+                } else {
+                    //alert('Something went wrong while preparing your Message');
+                    console.log(sendmessageform.message.value);
+                    console.log(sendmessageform.username.value);
+                    console.log(sendmessageform.body.JSON);
+                    event.preventDefault();
+                }
+            });
+
+            async function sendMessage(messageform){
+                const response = await fetch(url + '/comments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        message: messageform.message.value,
+                        username: messageform.username.value
+                    })
+                });
+
+                console.log(response);
+                
+                if(!response.ok){
+                    alert('Something went wrong while sending your message');
+                    console.log(response.body);
+                };
+            }
+        });
+    </script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <button id="requestauthcookie">Request AuthCookie</button>
+    <form name="comment">
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Tim Hug">
+
+        <label for="message">Message</label>
+        <input type="text" name="message" placeholder="Hello World!">
+
+        <button type="submit">Send!</button>
+    </form>
+</body>
+
+</html>
