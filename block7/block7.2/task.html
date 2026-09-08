@@ -7,6 +7,11 @@
     <title>Task7.2</title>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
+            const refreshbutton = document.getElementById('refreshbutton');
+
+            const addpost = document.forms.addPost;
+
+            refreshbutton.addEventListener('click', loadBlogPosts);
             const url = 'https://jsonplaceholder.typicode.com/posts';
 
             async function loadBlogPosts() {
@@ -16,37 +21,60 @@
 
                 const postdivs = document.getElementById('posts');
 
-                postdivs.replaceChildren([]);
+                postdivs.replaceChildren();
 
                 blogposts.forEach(blogpost => {
-                    const blogarticle = document.createElement('article');
-                    const blogtitle = document.createElement('h2');
-                    const deleteblogbutton = document.createElement('button');
-                    deleteblogbutton.onclick = () => deletePost(blogpost.id);
-
-                    blogtitle.innerText = blogpost.title;
-                    blogarticle.appendChild(blogtitle);
-
-                    const blogContent = document.createElement('p');
-                    blogContent.innerText = blogpost.body;
-                    blogarticle.appendChild(blogContent);
-
-                    postdivs.appendChild(blogarticle);
+                    postdivs.appendChild(CreateBlogPost(blogpost));
                 });
+
             };
 
-            async function deletePost(postid){
-                const response = await fetch(url, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json;charset=utf-8' 
-                    },
-                    body: JSON.stringify(postid)
+            async function deletePost(postid, blogarticle) {
+                const response = await fetch(url + '/' + postid, {
+                    method: 'DELETE'
                 });
-                const result = await response.json();
-                alert(result.message)
+                
+                if(!response.ok){
+                    alert('Something went wrong while deleting this post');
+                    return;
+                }
+                else{
+                    blogarticle.remove();
+                }
             }
-            
+
+            addpost.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify(addpost.title,addpost.content)
+                });
+                alert(response.body);
+                console.log('form submitted');
+            });
+
+            function CreateBlogPost(blogpost) {
+                const blogarticle = document.createElement('article');
+
+                const blogtitle = document.createElement('h2');
+                blogtitle.innerText = blogpost.title;
+                blogarticle.appendChild(blogtitle);
+
+                const blogContent = document.createElement('p');
+                blogContent.innerText = blogpost.body;
+                blogarticle.appendChild(blogContent);
+
+                const deleteblogbutton = document.createElement('button');
+                deleteblogbutton.innerText = 'Delete this Post.'
+                deleteblogbutton.onclick = () => deletePost(blogpost.id, blogarticle);
+                blogarticle.appendChild(deleteblogbutton);
+
+                return blogarticle;
+            }
+
         });
     </script>
     <style>
@@ -57,13 +85,16 @@
             border-radius: 5px;
             font-family: Arial, sans-serif;
         }
+
         .post-title {
             font-size: 1.5rem;
             font-weight: bold;
         }
+
         .post-body {
             font-size: 1rem;
         }
+
         body {
             background-color: lightblue;
         }
@@ -71,11 +102,20 @@
 </head>
 
 <body>
-<h1>Blog</h1>
+    <h1>Blog</h1>
+    <form name="addPost">
+        <label for="title">Titel</label>
+        <input type="text" name="title" placeholder="Lorem Ipsum">
+
+        <label for="content">Inhalt</label>
+        <input type="text" name="content" placeholder="Lorem Ipsum Dolor ...">
+
+        <button type="submit">Hinzufügen</button>
+    </form>
     <button id="refreshbutton">Refresh</button>
     <div id="posts">
-        
+
     </div>
 </body>
 
-</html>
+</html> 
