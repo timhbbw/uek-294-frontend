@@ -9,26 +9,31 @@
         document.addEventListener('DOMContentLoaded', async () => {
             const url = 'https://jsonplaceholder.typicode.com/posts';
 
-            const response = await fetch(url);
-            const posts = await response.json();
-            
-            for (const post of posts) {
-                const postelement = document.createElement('div');
-                const posttitle = document.createElement('h2');
-                const postbody = document.createElement('p');
-                const deletepostbutton = document.createElement('button');
-                postelement.classList.add('post');
-                posttitle.classList.add('post-title');
-                postbody.classList.add('post-body');
-                posttitle.textContent = post.title;
-                postbody.textContent = post.body;
-                deletepostbutton.textContent = 'Delete this post';
-                deletepostbutton.onclick = () => deletePost(post.id);
-                postelement.appendChild(posttitle);
-                postelement.appendChild(postbody);
-                postelement.appendChild(deletepostbutton);
-                document.body.appendChild(postelement);
-            }
+            async function loadBlogPosts() {
+                const result = await fetch(url);
+
+                const blogposts = await result.json();
+
+                const postdivs = document.getElementById('posts');
+
+                postdivs.replaceChildren([]);
+
+                blogposts.forEach(blogpost => {
+                    const blogarticle = document.createElement('article');
+                    const blogtitle = document.createElement('h2');
+                    const deleteblogbutton = document.createElement('button');
+                    deleteblogbutton.onclick = () => deletePost(blogpost.id);
+
+                    blogtitle.innerText = blogpost.title;
+                    blogarticle.appendChild(blogtitle);
+
+                    const blogContent = document.createElement('p');
+                    blogContent.innerText = blogpost.body;
+                    blogarticle.appendChild(blogContent);
+
+                    postdivs.appendChild(blogarticle);
+                });
+            };
 
             async function deletePost(postid){
                 const response = await fetch(url, {
@@ -66,7 +71,11 @@
 </head>
 
 <body>
-
+<h1>Blog</h1>
+    <button id="refreshbutton">Refresh</button>
+    <div id="posts">
+        
+    </div>
 </body>
 
 </html>
