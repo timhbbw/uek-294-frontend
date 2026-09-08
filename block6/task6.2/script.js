@@ -5,7 +5,6 @@ const passwordelement = form.elements.password;
 
 const confirmpasswordelement = form.elements['confirm-password'];
 
-
 const termselement = form.elements.terms;
 
 form.addEventListener('submit', function (event) {
