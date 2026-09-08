@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muster 7.1</title>
+    <script type="text/javascript">
+        //"Wäre ein gutes Beispiel für die LB B"
+        document.addEventListener('DOMContentLoaded', async () => {
+            const refreshbutton = document.getElementById('refreshbutton');
+
+            refreshbutton.addEventListener('click', loadBlogPosts);
+
+            const url = 'https://jsonplaceholder.typicode.com/posts';
+
+            async function loadBlogPosts() {
+                const result = await fetch(url);
+
+                const blogposts = await result.json();
+
+                const postdivs = document.getElementById('posts');
+
+                postdivs.replaceChildren([]);
+
+                blogposts.forEach(blogpost => {
+                    const blogarticle = document.createElement('article');
+                    const blogtitle = document.createElement('h2');
+
+                    blogtitle.innerText = blogpost.title;
+                    blogarticle.appendChild(blogtitle);
+
+                    const blogContent = document.createElement('p');
+                    blogContent.innerText = blogpost.body;
+                    blogarticle.appendChild(blogContent);
+
+                    postdivs.appendChild(blogarticle);
+                });
+            };
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Blog</h1>
+    <button id="refreshbutton">Refresh</button>
+    <div id="posts">
+        <article>
+            <h2>Blog Title</h2>
+            <p>Inhalt</p>
+        </article>
+    </div>
+</body>
+
+</html>

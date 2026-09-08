@@ -13,7 +13,7 @@
             const posts = await response.json();
             
             for (const post of posts) {
-                const postelement = document.createElement('div');
+                const postelement = document.createElement('article');
                 const posttitle = document.createElement('h2');
                 const postbody = document.createElement('p');
                 postelement.classList.add('post');
