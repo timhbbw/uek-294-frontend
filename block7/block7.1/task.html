@@ -11,9 +11,41 @@
 
             const response = await fetch(url);
             const posts = await response.json();
-            alert(posts[0].title);
+            
+            for (const post of posts) {
+                const postelement = document.createElement('div');
+                const posttitle = document.createElement('h2');
+                const postbody = document.createElement('p');
+                postelement.classList.add('post');
+                posttitle.classList.add('post-title');
+                postbody.classList.add('post-body');
+                posttitle.textContent = post.title;
+                postbody.textContent = post.body;
+                postelement.appendChild(posttitle);
+                postelement.appendChild(postbody);
+                document.body.appendChild(postelement);
+            }
         });
     </script>
+    <style>
+        .post {
+            border: 1px solid black;
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+        .post-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .post-body {
+            font-size: 1rem;
+        }
+        body {
+            background-color: lightblue;
+        }
+    </style>
 </head>
 
 <body>
